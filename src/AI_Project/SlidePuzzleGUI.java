@@ -9,7 +9,7 @@ class SlidePuzzleGUI extends JPanel {
     Fetch f ;
     boolean newGameFlag = false;
     JTextField dateTextField1 = new JTextField(15);
-    JButton newGameButton;
+    JButton specifedDateButton;
     JButton getNewCluesButton;
     BorderLayout allClues = new BorderLayout();
 
@@ -23,7 +23,7 @@ class SlidePuzzleGUI extends JPanel {
 
 
     public SlidePuzzleGUI(String date, boolean dataFlag) {
-        System.out.println("consturctor enter");
+        System.out.println("constructor enter");
         this.date = date;
 
         f = new Fetch();
@@ -51,7 +51,7 @@ class SlidePuzzleGUI extends JPanel {
 
         JPanel menuPanel = new JPanel();
         getNewCluesButton = new JButton("Click to see new clues !");
-        newGameButton = new JButton("Open Puzzle at specified date ! ");
+        specifedDateButton = new JButton("Open Puzzle at specified date ! ");
         todaysPuzzleButton = new JButton("Open Puzzle at this day ! ");
 
         JPanel controlPanel = new JPanel();
@@ -62,7 +62,7 @@ class SlidePuzzleGUI extends JPanel {
 
         menuPanel.add(todaysPuzzleButton);
         menuPanel.add(getNewCluesButton);
-        menuPanel.add(newGameButton);
+        menuPanel.add(specifedDateButton);
         menuPanel.add(dateTextField1);
 
         clueLayout.setSize(new Dimension(300,600));
@@ -131,9 +131,7 @@ class SlidePuzzleGUI extends JPanel {
                     }
             );
 
-
-
-            newGameButton.addActionListener(
+            specifedDateButton.addActionListener(
                     new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -153,14 +151,16 @@ class SlidePuzzleGUI extends JPanel {
                     new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            // TODO
+                            NewClue nc = new NewClue(date);
+                            nc.GetBestClues();
+                            nc.PrintNewClues();
+
+
                         }
                     }
             );
 
         }
-
-
 
         public void paintComponent(Graphics g) {
 

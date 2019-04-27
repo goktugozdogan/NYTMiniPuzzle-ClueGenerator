@@ -1,5 +1,11 @@
 package AI_Project;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+
 public class NewClue {
     // VARIABLES
     OxfordDictionary ox;
@@ -78,6 +84,34 @@ public class NewClue {
             System.out.println(ur.newCluesDefinition[i].clueNumber + " " + ur.newCluesDefinition[i].clueText);
             System.out.println(ca.newCluesDefinition[i].clueNumber + " " + ca.newCluesDefinition[i].clueText);
             System.out.println();
+        }
+    }
+
+    void writeNewClues (String date) {
+        try {
+            String path;
+            // write puzzleLayout array to file
+            path = "newclues/" + date + "/newclues.ser";
+            FileOutputStream fosP = new FileOutputStream(path);
+            ObjectOutputStream oosP = new ObjectOutputStream(fosP);
+            oosP.writeObject(newClues);
+            oosP.close();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    void readNewClues (String date) {
+        try {
+            // read clues array from file
+            String path = "newclues/" + date + "/newclues.ser";
+            FileInputStream fisC = new FileInputStream(path);
+            ObjectInputStream oisC = new ObjectInputStream(fisC);
+            newClues = (Square[]) oisC.readObject();
+            oisC.close();
+
+        }catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

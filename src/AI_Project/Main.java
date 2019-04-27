@@ -7,11 +7,32 @@ import java.awt.event.WindowEvent;
 
 public class Main {
     public static void main(String[] args) {
-/*        NewClue nc = new NewClue("Monday March 18, 2019");
-        nc.GetBestClues();
-        nc.PrintNewClues();*/
+        String date1 = "Thursday March 14, 2019";
+        String date2 = "Tuesday March 12, 2019";
+        String date3 = "Sunday March 17, 2019";
+        String date4 = "Monday March 18, 2019";
+        String date5 = "Friday March 15, 2019";
+        NewClue nc = new NewClue(date1);
+        nc.readNewClues(date1);
+        nc.PrintNewClues();
+        System.out.println();
+        nc = new NewClue(date2);
+        nc.readNewClues(date2);
+        nc.PrintNewClues();
+        System.out.println();
+        nc = new NewClue(date3);
+        nc.readNewClues(date3);
+        nc.PrintNewClues();
+        System.out.println();
+        nc = new NewClue(date4);
+        nc.readNewClues(date4);
+        nc.PrintNewClues();
+        System.out.println();
+        nc = new NewClue(date5);
+        nc.readNewClues(date5);
+        nc.PrintNewClues();
 
-        JFrame frame = new JFrame("ButtonTest");
+/*        JFrame frame = new JFrame("ButtonTest");
         frame.setSize(800, 800);
         frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -24,6 +45,6 @@ public class Main {
 
         frame.pack();
         frame.show();
-        frame.setLocationRelativeTo(null);
+        frame.setLocationRelativeTo(null);*/
     }
 }
