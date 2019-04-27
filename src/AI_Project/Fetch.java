@@ -317,3 +317,95 @@ class Fetch {
 
     }
  */
+
+/* 4 feb
+// constructor with url
+    public Fetch (String date) {
+        puzzleDate = date;
+        clues = new ArrayList<Clue>();
+        clues.add(new Clue("ACROSS", 1, "Post-lecture session, for short"));
+        clues.add(new Clue("ACROSS", 6, "Maneuver needed after missing a GPS direction"));
+        clues.add(new Clue("ACROSS", 7, "Annoyed"));
+        clues.add(new Clue("ACROSS", 8, "Breast, thigh or wing"));
+        clues.add(new Clue("ACROSS", 9, "Inquires"));
+        clues.add(new Clue("DOWN", 1, "Witty one-liner"));
+        clues.add(new Clue("DOWN", 2, "Heart chambers"));
+        clues.add(new Clue("DOWN", 3, "Weapons at the heart of a disputed U.S.-Russia treaty"));
+        clues.add(new Clue("DOWN", 4, "Rubbish"));
+        clues.add(new Clue("DOWN", 5, "Range that's home to the 22,831-foot Mount Aconcagua"));
+
+        puzzleLay = new Square[25];
+
+        puzzleLay[0] = new Square("1","Q");
+        puzzleLay[1] = new Square("2", "A");
+        puzzleLay[2] = new Square("3", "N");
+        puzzleLay[3] = new Square("4", "D");
+        puzzleLay[4] = new Square("5","A");
+        puzzleLay[5] = new Square("6", "U");
+        puzzleLay[6] = new Square(null, "T");
+        puzzleLay[7] = new Square(null, "U");
+        puzzleLay[8] = new Square(null, "R");
+        puzzleLay[9] = new Square(null, "N");
+        puzzleLay[10] = new Square("7", "I");
+        puzzleLay[11] = new Square(null, "R");
+        puzzleLay[12] = new Square(null, "K");
+        puzzleLay[13] = new Square(null, "E");
+        puzzleLay[14] = new Square(null, "D");
+        puzzleLay[15] = new Square("8", "P");
+        puzzleLay[16] = new Square(null, "I");
+        puzzleLay[17] = new Square(null, "E");
+        puzzleLay[18] = new Square(null, "C");
+        puzzleLay[19] = new Square(null, "E");
+        puzzleLay[20] = new Square(null, null);
+        puzzleLay[21] = new Square("9", "A");
+        puzzleLay[22] = new Square(null, "S");
+        puzzleLay[23] = new Square(null, "K");
+        puzzleLay[24] = new Square(null, "S");
+    }
+ */
+
+/* feb 5
+// constructor with url
+    public Fetch (String date) {
+        puzzleDate = date;
+        clues = new ArrayList<Clue>();
+        clues.add(new Clue("ACROSS", 1, "What cheese and soy sauce add to dish"));
+        clues.add(new Clue("ACROSS", 5, "Emotional request"));
+        clues.add(new Clue("ACROSS", 7, "Sent in, as one's taxes"));
+        clues.add(new Clue("ACROSS", 8, "What lemon and vinegar add to a dish"));
+        clues.add(new Clue("ACROSS", 9, "The \"place\" for \"1\" in 2019"));
+        clues.add(new Clue("DOWN", 1, "What chill and ginger add to a dish"));
+        clues.add(new Clue("DOWN", 2, "Max bet for a poker player"));
+        clues.add(new Clue("DOWN", 3, "English city near Manchester"));
+        clues.add(new Clue("DOWN", 4, "Slightest bit"));
+        clues.add(new Clue("DOWN", 6, "What olive oil and butter add to a dish"));
+
+        puzzleLay = new Square[25];
+
+        puzzleLay[0] = new Square(null,null);
+        puzzleLay[1] = new Square("1", "S");
+        puzzleLay[2] = new Square("2", "A");
+        puzzleLay[3] = new Square("3", "L");
+        puzzleLay[4] = new Square("4","T");
+        puzzleLay[5] = new Square(null, null);
+        puzzleLay[6] = new Square("5", "P");
+        puzzleLay[7] = new Square(null, "L");
+        puzzleLay[8] = new Square(null, "E");
+        puzzleLay[9] = new Square(null, "A");
+        puzzleLay[10] = new Square("6", "F");
+        puzzleLay[11] = new Square(null, "I");
+        puzzleLay[12] = new Square(null, "L");
+        puzzleLay[13] = new Square(null, "E");
+        puzzleLay[14] = new Square(null, "D");
+        puzzleLay[15] = new Square("7", "A");
+        puzzleLay[16] = new Square(null, "C");
+        puzzleLay[17] = new Square(null, "I");
+        puzzleLay[18] = new Square(null, "D");
+        puzzleLay[19] = new Square(null, null);
+        puzzleLay[20] = new Square("8", "T");
+        puzzleLay[21] = new Square(null, "E");
+        puzzleLay[22] = new Square(null, "N");
+        puzzleLay[23] = new Square(null, "S");
+        puzzleLay[24] = new Square(null, null);
+    }
+ */

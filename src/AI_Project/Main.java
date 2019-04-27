@@ -7,7 +7,14 @@ import java.awt.event.WindowEvent;
 
 public class Main {
     public static void main(String[] args) {
-        String date3 = "Sunday March 17, 2019";
+/*
+      Fetch  f = new Fetch("Tuesday February 5, 2019");
+      f.writePuzzle("Tuesday February 5, 2019");
+
+       Fetch ff = new Fetch();
+       ff.readPuzzle("Tuesday February 5, 2019");
+       ff.PrintPuzzle();*/
+ /*       String date3 = "Sunday March 17, 2019";
         String date4 = "Monday March 18, 2019";
         String date5 = "Friday March 15, 2019";
 
@@ -26,12 +33,32 @@ public class Main {
 
         nc = new NewClue(date5);
         nc.readNewClues(date5);
-        nc.PrintNewClues();
-        /*
+        nc.PrintNewClues();*/
+/*        String date0 = "Monday February 4, 2019";
+        String date1 = "Tuesday February 5, 2019";
+        String date2 = "Monday February 11, 2019";
         String date3 = "Sunday March 17, 2019";
         String date4 = "Monday March 18, 2019";
         String date5 = "Friday March 15, 2019";
         NewClue nc;
+
+        nc = new NewClue(date0);
+        nc.GetBestClues();
+        nc.writeNewClues(date0);
+        nc.readNewClues(date0);
+        nc.PrintNewClues();
+
+        nc = new NewClue(date1);
+        nc.GetBestClues();
+        nc.writeNewClues(date1);
+        nc.readNewClues(date1);
+        nc.PrintNewClues();
+
+        nc = new NewClue(date2);
+        nc.GetBestClues();
+        nc.writeNewClues(date2);
+        nc.readNewClues(date2);
+        nc.PrintNewClues();
 
         nc = new NewClue(date3);
         nc.GetBestClues();
@@ -53,10 +80,10 @@ public class Main {
         nc.GetBestClues();
         nc.writeNewClues(date5);
         nc.readNewClues(date5);
-        nc.PrintNewClues();
-         */
+        nc.PrintNewClues();*/
 
-/*        JFrame frame = new JFrame("ButtonTest");
+
+        JFrame frame = new JFrame("ButtonTest");
         frame.setSize(800, 800);
         frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -69,6 +96,6 @@ public class Main {
 
         frame.pack();
         frame.show();
-        frame.setLocationRelativeTo(null);*/
+        frame.setLocationRelativeTo(null);
     }
 }
