@@ -6,21 +6,12 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class Main {
-    /*public static void  main ( String[] args ) {
-        Fetch f = new Fetch("https://www.nytimes.com/crosswords/game/mini");
-
-        f.getClues();
-        f.getSolutions();
-        //f.writePuzzle("17.03.2019");
-        //f.readPuzzle("12.03.2019");
-        f.PrintPuzzle();
-    }*/
-
     public static void main(String[] args) {
-        UrbanDictionary ur = new UrbanDictionary();
-        ur.getNewClues("Friday March 15, 2019");
+/*        NewClue nc = new NewClue("Monday March 18, 2019");
+        nc.GetBestClues();
+        nc.PrintNewClues();*/
 
-/*        JFrame frame = new JFrame("ButtonTest");
+        JFrame frame = new JFrame("ButtonTest");
         frame.setSize(800, 800);
         frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -33,6 +24,6 @@ public class Main {
 
         frame.pack();
         frame.show();
-        frame.setLocationRelativeTo(null);*/
+        frame.setLocationRelativeTo(null);
     }
 }

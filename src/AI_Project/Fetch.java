@@ -141,9 +141,6 @@ class Fetch {
                 }
             }
         }
-
-        // for (Square a : s)
-           // System.out.println(a.clueNumber + " " + a.clueText);
     }
 
     void writePuzzle (String date) {

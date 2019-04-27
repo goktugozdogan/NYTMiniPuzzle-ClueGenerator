@@ -10,10 +10,12 @@ class SlidePuzzleGUI extends JPanel {
     boolean newGameFlag = false;
     JTextField dateTextField1 = new JTextField(15);
     JButton newGameButton;
+    JButton getNewCluesButton;
+    BorderLayout allClues = new BorderLayout();
 
     private GraphicsPanel    _puzzleGraphics;
-    private JLabel text;
-    private JLabel textD;
+    private JTextArea text;
+    private JTextArea textD;
     JLabel textDate;
     String date;
     JButton todaysPuzzleButton;
@@ -30,22 +32,36 @@ class SlidePuzzleGUI extends JPanel {
         if ( dataFlag )
             f.readPuzzle(date);
 
-        text = new JLabel ();
-        textD = new JLabel();
+        text = new JTextArea(6,30);
+        text.setFont(new Font("Serif", Font.BOLD, 16));
+        text.setLineWrap(true);
+        text.setWrapStyleWord(true);
+        text.setOpaque(false);
+        text.setEditable(false);
+        textD = new JTextArea(6, 30);
+        textD.setFont(new Font("Serif", Font.BOLD, 16));
+        textD.setLineWrap(true);
+        textD.setWrapStyleWord(true);
+        textD.setOpaque(false);
+        textD.setEditable(false);
         textDate= new JLabel();
         textDate.setHorizontalAlignment(SwingConstants.RIGHT);
         textDate.setLocation(550,550);
         clueGetter(false);
 
         JPanel menuPanel = new JPanel();
+        getNewCluesButton = new JButton("Click to see new clues !");
         newGameButton = new JButton("Open Puzzle at specified date ! ");
         todaysPuzzleButton = new JButton("Open Puzzle at this day ! ");
 
         JPanel controlPanel = new JPanel();
         JPanel clueLayout = new JPanel();
+
         JPanel dateLayout = new JPanel();
 
+
         menuPanel.add(todaysPuzzleButton);
+        menuPanel.add(getNewCluesButton);
         menuPanel.add(newGameButton);
         menuPanel.add(dateTextField1);
 
@@ -133,6 +149,15 @@ class SlidePuzzleGUI extends JPanel {
                     }
             );
 
+            getNewCluesButton.addActionListener(
+                    new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            // TODO
+                        }
+                    }
+            );
+
         }
 
 
@@ -197,22 +222,25 @@ class SlidePuzzleGUI extends JPanel {
     }
     public String clueGetter(boolean s){
         String str = "";
-        str = "<html> ACCROSS: <br>";
-        String strdown = "<html> DOWN: <br>";
+        str = "";
+        String strdown = "";
         if(s )
             for(int i = 0; i < 10; ++i){
-                if(f.clues.get(i).loc.equals("ACROSS"))
-                    str += f.clues.get(i).id +" : " + f.clues.get(i).text + "<br>";
-                if(f.clues.get(i).loc.equals("DOWN"))
-                    strdown += f.clues.get(i).id +" : " + f.clues.get(i).text + "<br>";
+                if(f.clues.get(i).loc.equals("ACROSS")) {
+                    str += f.clues.get(i).id + " : " + f.clues.get(i).text + "\n";
+                }
+                if(f.clues.get(i).loc.equals("DOWN")) {
+                    strdown += f.clues.get(i).id + " : " + f.clues.get(i).text + "\n";
+                }
             }
         if(!s)
         {
-            str += "****   Wellcome to Puzzle Clue Generator    *******<br> ";
-            strdown += "************* Göktuğ Özdoğan *************<br> ************* Mehmet Eren Turanboy ************* <br> ************* Derviş Mehmet Barutçu ************* <br> ************* Onur Kocahan ************* <br> ************* Yiğit Kutay Gülden *************";
+            str += "**   Wellcome to Puzzle Clue Generator    *** ";
+            strdown += "***** Göktuğ Özdoğan ***** \n ***** Mehmet Eren Turanboy ***** \n ***** Derviş Mehmet Barutçu ***** \n ***** Onur Kocahan ***** \n ***** Yiğit Kutay Gülden *****";
         }
-        text.setText(str + "</html>");
-        textD.setText(strdown + "</html>");
+        text.setText(str + "\n");
+        text.setBackground(Color.gray);
+        textD.setText(strdown + "\n");
         textDate.setText(f.puzzleDate);
 
         textDate.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -221,7 +249,7 @@ class SlidePuzzleGUI extends JPanel {
     }
 
     public void update(){
-        // f.puzzleLay[2].clueNumber = 9999;
+
         this.revalidate();
         this.repaint();
 
