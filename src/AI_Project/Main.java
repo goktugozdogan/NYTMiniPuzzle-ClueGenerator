@@ -8,7 +8,7 @@ import java.awt.event.WindowEvent;
 public class Main {
     public static void main(String[] args) {
 
-        JFrame frame = new JFrame("ButtonTest");
+        JFrame frame = new JFrame("Clue Generator");
         frame.setSize(800, 800);
         frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {

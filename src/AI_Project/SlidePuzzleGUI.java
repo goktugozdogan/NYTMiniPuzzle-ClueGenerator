@@ -158,9 +158,9 @@ class SlidePuzzleGUI extends JPanel {
                             nc.PrintNewClues();
                             String newText =text.getText();
                             String newTextD =textD.getText();
-                            newText += "\n \n \n";
-                            newTextD +="\n \n \n";
-                            sort(nc.newClues,0,nc.newClues.length-1);
+                            newText += "\n\n                                                                " +
+                                    "New Clues \nACROSS \n------------------\n";
+                            newTextD +="\n \n \nDOWN \n------------------\n";
                             for(int i = 0; i < 10; i++){
                                // newText +=  nc.newClues[i].clueText;
                                 if(nc.newClues[i].clueNumber.charAt(0) == 'A') {
@@ -286,9 +286,10 @@ class SlidePuzzleGUI extends JPanel {
 
     }
     public String clueGetter(boolean s){
-        String str = "";
-        str = "";
-        String strdown = "";
+        String str = "                                                                " +
+                "Original Clues "+"\n ACROSS \n ------------------  \n";
+
+        String strdown = "\n DOWN \n ------------------  \n";
         if(s )
             for(int i = 0; i < 10; ++i){
                 if(f.clues.get(i).loc.equals("ACROSS")) {
@@ -300,8 +301,8 @@ class SlidePuzzleGUI extends JPanel {
             }
         if(!s)
         {
-            str += "**   Wellcome to Puzzle Clue Generator    *** ";
-            strdown += "***** Göktuğ Özdoğan ***** \n ***** Mehmet Eren Turanboy ***** \n ***** Derviş Mehmet Barutçu ***** \n ***** Onur Kocahan ***** \n ***** Yiğit Kutay Gülden *****";
+            str = "**   Wellcome to Puzzle Clue Generator    *** ";
+            strdown = "***** Göktuğ Özdoğan ***** \n ***** Mehmet Eren Turanboy ***** \n ***** Derviş Mehmet Barutçu ***** \n ***** Onur Kocahan ***** \n ***** Yiğit Kutay Gülden *****";
         }
         text.setText(str + "\n");
         text.setBackground(Color.gray);
