@@ -154,7 +154,8 @@ class SlidePuzzleGUI extends JPanel {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             NewClue nc = new NewClue(f.puzzleDate);
-                            nc.GetBestClues();
+                            //nc.GetBestClues();
+                            nc.readNewClues(date);
                             nc.PrintNewClues();
                             String newText =text.getText();
                             String newTextD =textD.getText();

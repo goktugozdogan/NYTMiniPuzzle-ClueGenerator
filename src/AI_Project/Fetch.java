@@ -366,14 +366,14 @@ class Fetch {
 
 /* feb 5
 // constructor with url
-    public Fetch (String date) {
+public Fetch (String date) {
         puzzleDate = date;
         clues = new ArrayList<Clue>();
         clues.add(new Clue("ACROSS", 1, "What cheese and soy sauce add to dish"));
         clues.add(new Clue("ACROSS", 5, "Emotional request"));
-        clues.add(new Clue("ACROSS", 7, "Sent in, as one's taxes"));
-        clues.add(new Clue("ACROSS", 8, "What lemon and vinegar add to a dish"));
-        clues.add(new Clue("ACROSS", 9, "The \"place\" for \"1\" in 2019"));
+        clues.add(new Clue("ACROSS", 6, "Sent in, as one's taxes"));
+        clues.add(new Clue("ACROSS", 7, "What lemon and vinegar add to a dish"));
+        clues.add(new Clue("ACROSS", 8, "The \"place\" for \"1\" in 2019"));
         clues.add(new Clue("DOWN", 1, "What chill and ginger add to a dish"));
         clues.add(new Clue("DOWN", 2, "Max bet for a poker player"));
         clues.add(new Clue("DOWN", 3, "English city near Manchester"));
