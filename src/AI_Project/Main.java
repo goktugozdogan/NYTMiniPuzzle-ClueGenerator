@@ -7,9 +7,6 @@ import java.awt.event.WindowEvent;
 
 public class Main {
     public static void main(String[] args) {
-/*        NewClue nc = new NewClue("Monday March 18, 2019");
-        nc.GetBestClues();
-        nc.PrintNewClues();*/
 
         JFrame frame = new JFrame("ButtonTest");
         frame.setSize(800, 800);

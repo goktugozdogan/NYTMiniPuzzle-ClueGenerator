@@ -32,13 +32,13 @@ class SlidePuzzleGUI extends JPanel {
         if ( dataFlag )
             f.readPuzzle(date);
 
-        text = new JTextArea(6,30);
+        text = new JTextArea(30,30);
         text.setFont(new Font("Serif", Font.BOLD, 16));
         text.setLineWrap(true);
         text.setWrapStyleWord(true);
         text.setOpaque(false);
         text.setEditable(false);
-        textD = new JTextArea(6, 30);
+        textD = new JTextArea(30, 30);
         textD.setFont(new Font("Serif", Font.BOLD, 16));
         textD.setLineWrap(true);
         textD.setWrapStyleWord(true);
@@ -153,14 +153,79 @@ class SlidePuzzleGUI extends JPanel {
                     new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            // TODO
+                            NewClue nc = new NewClue(f.puzzleDate);
+                            nc.GetBestClues();
+                            nc.PrintNewClues();
+                            String newText =text.getText();
+                            String newTextD =textD.getText();
+                            newText += "\n \n \n";
+                            newTextD +="\n \n \n";
+                            sort(nc.newClues,0,nc.newClues.length-1);
+                            for(int i = 0; i < 10; i++){
+                               // newText +=  nc.newClues[i].clueText;
+                                if(nc.newClues[i].clueNumber.charAt(0) == 'A') {
+                                    newText +=  nc.newClues[i].clueNumber.charAt(1) + ": "+ nc.newClues[i].clueText + "\n";
+                                }
+                                if(nc.newClues[i].clueNumber.charAt(0) == 'D') {
+                                    newTextD +=  nc.newClues[i].clueNumber.charAt(1) + ": " + nc.newClues[i].clueText + "\n";
+                                }
+                            }
+
+                            text.setText(newText);
+                            textD.setText(newTextD);
+
                         }
                     }
             );
 
         }
 
+        int partition(Square arr[], int low, int high)
+        {
+            int pivot = ((int)(arr[high].clueNumber.charAt(1)));
+            int i = (low-1); // index of smaller element
+            for (int j=low; j<high; j++)
+            {
+                // If current element is smaller than or
+                // equal to pivot
+                if (((int)(arr[high].clueNumber.charAt(1) )<= pivot))
+                {
+                    i++;
 
+                    // swap arr[i] and arr[j]
+                    Square temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+
+            // swap arr[i+1] and arr[high] (or pivot)
+            Square temp = arr[i+1];
+            arr[i+1] = arr[high];
+            arr[high] = temp;
+
+            return i+1;
+        }
+
+
+        /* The main function that implements QuickSort()
+          arr[] --> Array to be sorted,
+          low  --> Starting index,
+          high  --> Ending index */
+        void sort(Square arr[], int low, int high)
+        {
+            if (low < high)
+            {
+            /* pi is partitioning index, arr[pi] is
+              now at right place */
+                int pi = partition(arr, low, high);
+
+                // Recursively sort elements before
+                // partition and after partition
+                sort(arr, low, pi-1);
+                sort(arr, pi+1, high);
+            }
+        }
 
         public void paintComponent(Graphics g) {
 
