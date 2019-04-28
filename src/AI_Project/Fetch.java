@@ -223,7 +223,7 @@ class Fetch {
         clues.add(new Clue("DOWN", 2, "Stay away from"));
         clues.add(new Clue("DOWN", 3, "Skilled assassin"));
         clues.add(new Clue("DOWN", 4, "Supreme Court justice appointed between Sotomayor and Gorsuch"));
-        clues.add(new Clue("DOWN", 5, "TODO"));
+        clues.add(new Clue("DOWN", 5, "asd"));
 
         puzzleLay = new Square[25];
 

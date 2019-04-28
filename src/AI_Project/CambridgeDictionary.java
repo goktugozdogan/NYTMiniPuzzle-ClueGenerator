@@ -3,16 +3,16 @@ package AI_Project;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.Arrays;
+
 class CambridgeDictionary {
     // VARIABLES
-    String url;
+    private String url;
     Square[] newCluesDefinition;
-    Square[] newCluesExample;
 
     CambridgeDictionary() {
         url = "https://dictionary.cambridge.org/dictionary/english/";
         newCluesDefinition = new Square[10];
-        newCluesExample = new Square[10];
     }
 
     void getNewClues (String date) {
@@ -22,7 +22,7 @@ class CambridgeDictionary {
             f.readPuzzle(date);
             f.getWords();
         }catch (Exception e) {
-            System.out.println(e.getStackTrace());
+            System.out.println(Arrays.toString(e.getStackTrace()));
         }
 
         System.setProperty("webdriver.chrome.driver","lib/selenium/chromedriver.exe");

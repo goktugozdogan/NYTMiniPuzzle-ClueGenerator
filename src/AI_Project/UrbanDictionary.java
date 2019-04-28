@@ -3,16 +3,16 @@ package AI_Project;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.Arrays;
+
 class UrbanDictionary {
     // VARIABLES
-    String url;
+    private String url;
     Square[] newCluesDefinition;
-    Square[] newCluesExample;
 
     UrbanDictionary() {
         url = "https://www.urbandictionary.com/define.php?term=";
         newCluesDefinition = new Square[10];
-        newCluesExample = new Square[10];
     }
 
     void getNewClues (String date) {
@@ -22,7 +22,7 @@ class UrbanDictionary {
             f.readPuzzle(date);
             f.getWords();
         }catch (Exception e) {
-            System.out.println(e.getStackTrace());
+            System.out.println(Arrays.toString(e.getStackTrace()));
         }
 
         System.setProperty("webdriver.chrome.driver","lib/selenium/chromedriver.exe");
@@ -43,9 +43,6 @@ class UrbanDictionary {
                 if ( def.toLowerCase().contains(s.clueText.toLowerCase()) )
                     def = def.replace(s.clueText.toLowerCase(), "_____");
                 newCluesDefinition[def_count] = new Square(s.clueNumber, def);
-
-                /*element = browser.findElementByXPath("//*[@id=\"content\"]/div[2]/div[3]");
-                newCluesDefinition[def_count].clueText += "\n" + element.getText();*/
 
             }catch (Exception e) {
                 newCluesDefinition[def_count] = new Square(s.clueNumber, "");

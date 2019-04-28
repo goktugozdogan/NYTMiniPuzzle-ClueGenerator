@@ -4,26 +4,22 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-
 class SlidePuzzleGUI extends JPanel {
-    Fetch f ;
-    boolean newGameFlag = false;
-    JTextField dateTextField1 = new JTextField(15);
-    JButton newGameButton;
-    JButton getNewCluesButton;
-    BorderLayout allClues = new BorderLayout();
+    private Fetch f ;
+    private boolean newGameFlag = false;
+    private JTextField dateTextField1 = new JTextField(15);
+    private JButton specifiedDateButton;
+    private JButton getNewCluesButton;
 
-    private GraphicsPanel    _puzzleGraphics;
+    private GraphicsPanel _puzzleGraphics;
     private JTextArea text;
     private JTextArea textD;
-    JLabel textDate;
-    String date;
-    JButton todaysPuzzleButton;
+    private JLabel textDate;
+    private String date;
+    private JButton todaysPuzzleButton;
 
-
-
-    public SlidePuzzleGUI(String date, boolean dataFlag) {
-        System.out.println("consturctor enter");
+    SlidePuzzleGUI(String date, boolean dataFlag) {
+        System.out.println("constructor enter");
         this.date = date;
 
         f = new Fetch();
@@ -51,7 +47,7 @@ class SlidePuzzleGUI extends JPanel {
 
         JPanel menuPanel = new JPanel();
         getNewCluesButton = new JButton("Click to see new clues !");
-        newGameButton = new JButton("Open Puzzle at specified date ! ");
+        specifiedDateButton = new JButton("Open Puzzle at specified date ! ");
         todaysPuzzleButton = new JButton("Open Puzzle at this day ! ");
 
         JPanel controlPanel = new JPanel();
@@ -62,7 +58,7 @@ class SlidePuzzleGUI extends JPanel {
 
         menuPanel.add(todaysPuzzleButton);
         menuPanel.add(getNewCluesButton);
-        menuPanel.add(newGameButton);
+        menuPanel.add(specifiedDateButton);
         menuPanel.add(dateTextField1);
 
         clueLayout.setSize(new Dimension(300,600));
@@ -87,15 +83,16 @@ class SlidePuzzleGUI extends JPanel {
 
     }
 
-    public void setDate(String date){
+    void setDate(String date){
         this.date = date;
     }
-    public  String getDate(){
+
+    public String getDate(){
         System.out.println(this.date);
         return this.date;
     }
 
-    public void setfetct(Fetch f){
+    void setFetch(Fetch f){
         this.f = f;
 
     }
@@ -119,10 +116,11 @@ class SlidePuzzleGUI extends JPanel {
                             f.getSolutions();
 
                             date = f.puzzleDate;
+                            //f.writePuzzle(date);
                             setDate(date);
                             SlidePuzzleGUI newGUI =  new SlidePuzzleGUI(date, true);
                             _puzzleGraphics = newGUI._puzzleGraphics;
-                            setfetct(newGUI.f);
+                            setFetch(newGUI.f);
                             clueSet(newGUI.f);
                             clueGetter(true);
 
@@ -131,9 +129,7 @@ class SlidePuzzleGUI extends JPanel {
                     }
             );
 
-
-
-            newGameButton.addActionListener(
+            specifiedDateButton.addActionListener(
                     new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -141,7 +137,7 @@ class SlidePuzzleGUI extends JPanel {
                             setDate(date);
                             SlidePuzzleGUI newGUI =  new SlidePuzzleGUI(date, true);
                             _puzzleGraphics = newGUI._puzzleGraphics;
-                            setfetct(newGUI.f);
+                            setFetch(newGUI.f);
                             clueSet(newGUI.f);
                             clueGetter(true);
                             newGameFlag = true;
@@ -154,9 +150,11 @@ class SlidePuzzleGUI extends JPanel {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             NewClue nc = new NewClue(f.puzzleDate);
+                            date = f.puzzleDate;
                             //nc.GetBestClues();
+                            //nc.writeNewClues(date);
                             nc.readNewClues(date);
-                            nc.PrintNewClues();
+                            //nc.PrintNewClues();
                             String newText =text.getText();
                             String newTextD =textD.getText();
                             newText += "\n\n                                                                " +
@@ -171,61 +169,11 @@ class SlidePuzzleGUI extends JPanel {
                                     newTextD +=  nc.newClues[i].clueNumber.charAt(1) + ": " + nc.newClues[i].clueText + "\n";
                                 }
                             }
-
                             text.setText(newText);
                             textD.setText(newTextD);
-
                         }
                     }
             );
-
-        }
-
-        int partition(Square arr[], int low, int high)
-        {
-            int pivot = ((int)(arr[high].clueNumber.charAt(1)));
-            int i = (low-1); // index of smaller element
-            for (int j=low; j<high; j++)
-            {
-                // If current element is smaller than or
-                // equal to pivot
-                if (((int)(arr[high].clueNumber.charAt(1) )<= pivot))
-                {
-                    i++;
-
-                    // swap arr[i] and arr[j]
-                    Square temp = arr[i];
-                    arr[i] = arr[j];
-                    arr[j] = temp;
-                }
-            }
-
-            // swap arr[i+1] and arr[high] (or pivot)
-            Square temp = arr[i+1];
-            arr[i+1] = arr[high];
-            arr[high] = temp;
-
-            return i+1;
-        }
-
-
-        /* The main function that implements QuickSort()
-          arr[] --> Array to be sorted,
-          low  --> Starting index,
-          high  --> Ending index */
-        void sort(Square arr[], int low, int high)
-        {
-            if (low < high)
-            {
-            /* pi is partitioning index, arr[pi] is
-              now at right place */
-                int pi = partition(arr, low, high);
-
-                // Recursively sort elements before
-                // partition and after partition
-                sort(arr, low, pi-1);
-                sort(arr, pi+1, high);
-            }
         }
 
         public void paintComponent(Graphics g) {
