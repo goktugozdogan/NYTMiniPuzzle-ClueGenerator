@@ -53,9 +53,6 @@ class SlidePuzzleGUI extends JPanel {
         JPanel controlPanel = new JPanel();
         JPanel clueLayout = new JPanel();
 
-        JPanel dateLayout = new JPanel();
-
-
         menuPanel.add(todaysPuzzleButton);
         menuPanel.add(getNewCluesButton);
         menuPanel.add(specifiedDateButton);
@@ -83,16 +80,11 @@ class SlidePuzzleGUI extends JPanel {
 
     }
 
-    void setDate(String date){
+    private void setDate(String date){
         this.date = date;
     }
 
-    public String getDate(){
-        System.out.println(this.date);
-        return this.date;
-    }
-
-    void setFetch(Fetch f){
+    private void setFetch(Fetch f){
         this.f = f;
 
     }
@@ -104,76 +96,79 @@ class SlidePuzzleGUI extends JPanel {
         private static final int CELL_SIZE = 80; // Pixels
         private Font _biggerFont;
 
-        public GraphicsPanel() {
+        GraphicsPanel() {
             _biggerFont = new Font("SansSerif", Font.BOLD, CELL_SIZE/2);
             this.setPreferredSize(new Dimension(CELL_SIZE * COLS, CELL_SIZE*ROWS));
 
             todaysPuzzleButton.addActionListener(
-                    new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            f.getClues();
-                            f.getSolutions();
+                    e -> {
+                        f.getClues();
+                        f.getSolutions();
 
-                            date = f.puzzleDate;
-                            //f.writePuzzle(date);
-                            setDate(date);
-                            SlidePuzzleGUI newGUI =  new SlidePuzzleGUI(date, true);
-                            _puzzleGraphics = newGUI._puzzleGraphics;
-                            setFetch(newGUI.f);
-                            clueSet(newGUI.f);
-                            clueGetter(true);
+                        date = f.puzzleDate;
+                        //f.writePuzzle(date);
+                        setDate(date);
+                        SlidePuzzleGUI newGUI =  new SlidePuzzleGUI(date, true);
+                        _puzzleGraphics = newGUI._puzzleGraphics;
+                        setFetch(newGUI.f);
+                        clueSet(newGUI.f);
+                        clueGetter(true);
 
-                            newGameFlag = true;
-                        }
+                        newGameFlag = true;
                     }
             );
 
             specifiedDateButton.addActionListener(
-                    new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            date = dateTextField1.getText();
-                            setDate(date);
-                            SlidePuzzleGUI newGUI =  new SlidePuzzleGUI(date, true);
-                            _puzzleGraphics = newGUI._puzzleGraphics;
-                            setFetch(newGUI.f);
-                            clueSet(newGUI.f);
-                            clueGetter(true);
-                            newGameFlag = true;
-                        }
+                    e -> {
+                        date = dateTextField1.getText();
+                        setDate(date);
+                        SlidePuzzleGUI newGUI =  new SlidePuzzleGUI(date, true);
+                        _puzzleGraphics = newGUI._puzzleGraphics;
+                        setFetch(newGUI.f);
+                        clueSet(newGUI.f);
+                        clueGetter(true);
+                        newGameFlag = true;
                     }
             );
 
             getNewCluesButton.addActionListener(
-                    new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            NewClue nc = new NewClue(f.puzzleDate);
-                            date = f.puzzleDate;
-                            //nc.GetBestClues();
-                            //nc.writeNewClues(date);
-                            nc.readNewClues(date);
-                            //nc.PrintNewClues();
-                            String newText =text.getText();
-                            String newTextD =textD.getText();
-                            newText += "\n\n                                                                " +
-                                    "New Clues \nACROSS \n------------------\n";
-                            newTextD +="\n \n \nDOWN \n------------------\n";
-                            for(int i = 0; i < 10; i++){
-                               // newText +=  nc.newClues[i].clueText;
-                                if(nc.newClues[i].clueNumber.charAt(0) == 'A') {
-                                    newText +=  nc.newClues[i].clueNumber.charAt(1) + ": "+ nc.newClues[i].clueText + "\n";
-                                }
-                                if(nc.newClues[i].clueNumber.charAt(0) == 'D') {
-                                    newTextD +=  nc.newClues[i].clueNumber.charAt(1) + ": " + nc.newClues[i].clueText + "\n";
-                                }
+                    e -> {
+                        NewClue nc = new NewClue(f.puzzleDate);
+                        date = f.puzzleDate;
+                        //nc.GetBestClues();
+                        //nc.writeNewClues(date);
+                        nc.readNewClues(date);
+                        //nc.PrintNewClues();
+                        sort(nc.newClues);
+                        StringBuilder newText = new StringBuilder(text.getText());
+                        StringBuilder newTextD = new StringBuilder(textD.getText());
+                        newText.append("\n\n                                                                " + "New Clues \nACROSS \n------------------\n");
+                        newTextD.append("\n \n \nDOWN \n------------------\n");
+                        for(int i = 0; i < 10; i++){
+                           // newText +=  nc.newClues[i].clueText;
+                            if(nc.newClues[i].clueNumber.charAt(0) == 'A') {
+                                newText.append(nc.newClues[i].clueNumber.charAt(1)).append(": ").append(nc.newClues[i].clueText).append("\n");
                             }
-                            text.setText(newText);
-                            textD.setText(newTextD);
+                            if(nc.newClues[i].clueNumber.charAt(0) == 'D') {
+                                newTextD.append(nc.newClues[i].clueNumber.charAt(1)).append(": ").append(nc.newClues[i].clueText).append("\n");
+                            }
                         }
+                        text.setText(newText.toString());
+                        textD.setText(newTextD.toString());
                     }
             );
+        }
+
+        void sort(Square[] arr) {
+            int n = arr.length;
+            for (int i = 0; i < n-1; i++)
+                for (int j = 0; j < n-i-1; j++)
+                    if (arr[j].clueNumber.charAt(1) > arr[j+1].clueNumber.charAt(1)) {
+                        // swap arr[j+1] and arr[i]
+                        Square temp = arr[j];
+                        arr[j] = arr[j+1];
+                        arr[j+1] = temp;
+                    }
         }
 
         public void paintComponent(Graphics g) {
@@ -230,28 +225,28 @@ class SlidePuzzleGUI extends JPanel {
         }
     }
 
-    public void clueSet(Fetch ff){
+    private void clueSet(Fetch ff){
         this.f.clues = ff.clues;
 
     }
-    public String clueGetter(boolean s){
-        String str = "                                                                " +
-                "Original Clues "+"\n ACROSS \n ------------------  \n";
+    private void clueGetter(boolean s){
+        StringBuilder str = new StringBuilder("                                                                " +
+                "Original Clues " + "\n ACROSS \n ------------------  \n");
 
-        String strdown = "\n DOWN \n ------------------  \n";
+        StringBuilder strdown = new StringBuilder("\n DOWN \n ------------------  \n");
         if(s )
             for(int i = 0; i < 10; ++i){
                 if(f.clues.get(i).loc.equals("ACROSS")) {
-                    str += f.clues.get(i).id + " : " + f.clues.get(i).text + "\n";
+                    str.append(f.clues.get(i).id).append(" : ").append(f.clues.get(i).text).append("\n");
                 }
                 if(f.clues.get(i).loc.equals("DOWN")) {
-                    strdown += f.clues.get(i).id + " : " + f.clues.get(i).text + "\n";
+                    strdown.append(f.clues.get(i).id).append(" : ").append(f.clues.get(i).text).append("\n");
                 }
             }
         if(!s)
         {
-            str = "**   Wellcome to Puzzle Clue Generator    *** ";
-            strdown = "***** Göktuğ Özdoğan ***** \n ***** Mehmet Eren Turanboy ***** \n ***** Derviş Mehmet Barutçu ***** \n ***** Onur Kocahan ***** \n ***** Yiğit Kutay Gülden *****";
+            str = new StringBuilder("***    Wellcome to Puzzle Clue Generator    ***");
+            strdown = new StringBuilder(" ***** Göktuğ Özdoğan ***** \n ***** Mehmet Eren Turanboy ***** \n ***** Derviş Mehmet Barutçu ***** \n ***** Onur Kocahan ***** \n ***** Yiğit Kutay Gülden *****");
         }
         text.setText(str + "\n");
         text.setBackground(Color.gray);
@@ -259,11 +254,9 @@ class SlidePuzzleGUI extends JPanel {
         textDate.setText(f.puzzleDate);
 
         textDate.setHorizontalAlignment(SwingConstants.RIGHT);
-
-        return str;
     }
 
-    public void update(){
+    private void update(){
 
         this.revalidate();
         this.repaint();

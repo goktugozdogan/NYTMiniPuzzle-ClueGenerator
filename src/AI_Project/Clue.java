@@ -2,7 +2,7 @@ package AI_Project;
 
 import java.io.Serializable;
 
-public class Clue implements Serializable {
+class Clue implements Serializable {
     // VARIABLES
     private static final long serialVersionUID = 1L;
     String loc;
