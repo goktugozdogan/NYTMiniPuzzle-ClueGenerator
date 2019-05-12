@@ -24,6 +24,8 @@ class NewClue {
     }
 
     void GetBestClues () {
+        System.out.println("Computing best possible new clue...");
+
         OxfordThread oxford = new OxfordThread() ;
         oxford.start();
 
@@ -69,6 +71,8 @@ class NewClue {
                 }
             }
         }
+
+        System.out.println("Best possible clues were computed.");
     }
 
     void PrintNewClues () {
@@ -124,7 +128,9 @@ class NewClue {
     class OxfordThread extends Thread {
         public void run() {
             try {
+                System.out.println("Searching new possible clues in Oxford Dictionary...");
                 ox.getNewClues(date);
+                System.out.println("Oxford Dictionary search completed.");
             } catch (Exception e) {
                 // Throwing an exception
                 System.out.println (Arrays.toString(e.getStackTrace()));
@@ -135,7 +141,9 @@ class NewClue {
     class CambridgeThread extends Thread {
         public void run() {
             try {
+                System.out.println("Searching new possible clues in Cambridge Dictionary...");
                 ca.getNewClues(date);
+                System.out.println("Cambridge Dictionary search completed.");
             } catch (Exception e) {
                 // Throwing an exception
                 System.out.println (Arrays.toString(e.getStackTrace()));
@@ -146,7 +154,9 @@ class NewClue {
     class UrbanThread extends Thread {
         public void run() {
             try {
+                System.out.println("Searching new possible clues in Urban Dictionary...");
                 ur.getNewClues(date);
+                System.out.println("Urban Dictionary search completed.");
             } catch (Exception e) {
                 // Throwing an exception
                 System.out.println (Arrays.toString(e.getStackTrace()));

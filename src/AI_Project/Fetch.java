@@ -37,6 +37,7 @@ class Fetch {
         }catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println("Gathering clues from NYT Mini Puzzle...");
 
         // count location of clues
         Elements locCount = doc.select("div.ClueList-wrapper--3m-kd");
@@ -60,9 +61,11 @@ class Fetch {
             clues.add(new Clue(loc, id, text));
             count++;
         }
+        System.out.println("Clues were gathered.");
     }
 
     void getSolutions () {
+        System.out.println("Gathering answers from NYT Mini Puzzle...");
         System.setProperty("webdriver.chrome.driver","lib/selenium/chromedriver.exe");
         ChromeDriver browser = new ChromeDriver();
         browser.get(url);
@@ -107,6 +110,7 @@ class Fetch {
         puzzleDate = element5.getText();
 
         browser.close();
+        System.out.println("Answers were gathered.");
     }
 
     void getWords () {
