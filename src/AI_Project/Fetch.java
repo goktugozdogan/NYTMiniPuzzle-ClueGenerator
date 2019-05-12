@@ -145,6 +145,11 @@ class Fetch {
 
     void writePuzzle (String date) {
         try {
+            boolean success = (new File("puzzles/" + date)).mkdirs();
+
+            if ( !success )
+                return;
+
             String path;
             // write clues array to file
             path = "puzzles/" + date + "/clues.ser";
@@ -199,12 +204,15 @@ class Fetch {
     }
 
     void PrintPuzzle () {
-        System.out.println("Date: " + puzzleDate + "\n");
+        System.out.println("Date: " + puzzleDate + "\n-----CLUES-----");
 
         for (Clue clue : clues)
-            System.out.println(clue.toString() + "\n");
+            System.out.println(clue.toString());
 
+        System.out.println("\n-----ANSWERS-----");
+
+        int i = 0;
         for (Square a : puzzleLay)
-            System.out.println(a.toString());
+            System.out.println((i++) + "#\t" + a.toString());
     }
 }

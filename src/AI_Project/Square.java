@@ -15,6 +15,6 @@ class Square implements Serializable {
 
     @Override
     public String toString () {
-        return "Number: " + clueNumber + "\nText: " + clueText + "\n--------------";
+        return clueNumber + "\t" + clueText;
     }
 }

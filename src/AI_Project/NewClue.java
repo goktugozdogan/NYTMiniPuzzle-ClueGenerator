@@ -1,9 +1,6 @@
 package AI_Project;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.Arrays;
 
 class NewClue {
@@ -75,22 +72,29 @@ class NewClue {
     }
 
     void PrintNewClues () {
+        System.out.println("-----NEW CLUES-----");
         for ( Square s: newClues ) {
-            System.out.println(s.clueNumber + " " + s.clueText);
+            System.out.println(s.clueNumber + "  " + s.clueText);
         }
     }
 
     void PrintAllPossibleClues () {
+        System.out.println("\n-----ALL POSSIBLE CLUES-----");
         for ( int i = 0; i < 10; i++ ) {
-            System.out.println(ox.newCluesDefinition[i].clueNumber + " " + ox.newCluesDefinition[i].clueText);
-            System.out.println(ur.newCluesDefinition[i].clueNumber + " " + ur.newCluesDefinition[i].clueText);
-            System.out.println(ca.newCluesDefinition[i].clueNumber + " " + ca.newCluesDefinition[i].clueText);
+            System.out.println(ca.newCluesDefinition[i].clueNumber + "  Cambridge:" + ca.newCluesDefinition[i].clueText);
+            System.out.println(ox.newCluesDefinition[i].clueNumber + "  Oxford:" + ox.newCluesDefinition[i].clueText);
+            System.out.println(ur.newCluesDefinition[i].clueNumber + "  Urban:" + ur.newCluesDefinition[i].clueText);
             System.out.println();
         }
     }
 
     void writeNewClues (String date) {
         try {
+            boolean success = (new File("newclues/" + date)).mkdirs();
+
+            if ( !success )
+                return;
+
             String path;
             // write puzzleLayout array to file
             path = "newclues/" + date + "/newclues.ser";

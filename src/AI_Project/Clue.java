@@ -17,6 +17,6 @@ class Clue implements Serializable {
 
     @Override
     public String toString () {
-        return "Location: " + loc + "\nID: " + id + "\nText: " + text;
+        return loc + "_" + id + "\t" + text;
     }
 }

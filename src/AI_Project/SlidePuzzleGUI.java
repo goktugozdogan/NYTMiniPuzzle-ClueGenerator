@@ -19,14 +19,17 @@ class SlidePuzzleGUI extends JPanel {
     private JButton todaysPuzzleButton;
 
     SlidePuzzleGUI(String date, boolean dataFlag) {
-        System.out.println("constructor enter");
+        //System.out.println("constructor enter");
         this.date = date;
 
         f = new Fetch();
 
 
-        if ( dataFlag )
+        if ( dataFlag ) {
             f.readPuzzle(date);
+            f.PrintPuzzle();
+        }
+
 
         text = new JTextArea(30,30);
         text.setFont(new Font("Serif", Font.BOLD, 16));
@@ -106,7 +109,8 @@ class SlidePuzzleGUI extends JPanel {
                         f.getSolutions();
 
                         date = f.puzzleDate;
-                        //f.writePuzzle(date);
+                        f.writePuzzle(date);
+                        f.PrintPuzzle();
                         setDate(date);
                         SlidePuzzleGUI newGUI =  new SlidePuzzleGUI(date, true);
                         _puzzleGraphics = newGUI._puzzleGraphics;
@@ -135,10 +139,11 @@ class SlidePuzzleGUI extends JPanel {
                     e -> {
                         NewClue nc = new NewClue(f.puzzleDate);
                         date = f.puzzleDate;
-                        //nc.GetBestClues();
-                        //nc.writeNewClues(date);
+                        nc.GetBestClues();
+                        nc.writeNewClues(date);
                         nc.readNewClues(date);
-                        //nc.PrintNewClues();
+                        nc.PrintAllPossibleClues();
+                        nc.PrintNewClues();
                         sort(nc.newClues);
                         StringBuilder newText = new StringBuilder(text.getText());
                         StringBuilder newTextD = new StringBuilder(textD.getText());
