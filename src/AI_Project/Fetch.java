@@ -208,7 +208,7 @@ class Fetch {
     }
 
     void PrintPuzzle () {
-        System.out.println("Date: " + puzzleDate + "\n-----CLUES-----");
+        System.out.println("\nDate: " + puzzleDate + "\n\n-----CLUES-----");
 
         for (Clue clue : clues)
             System.out.println(clue.toString());

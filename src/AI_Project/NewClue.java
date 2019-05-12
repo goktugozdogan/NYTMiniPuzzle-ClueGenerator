@@ -24,7 +24,7 @@ class NewClue {
     }
 
     void GetBestClues () {
-        System.out.println("Computing best possible new clue...");
+        System.out.println("\nComputing best possible new clues from cambridge, Oxford and Urban Dictionaries...");
 
         OxfordThread oxford = new OxfordThread() ;
         oxford.start();

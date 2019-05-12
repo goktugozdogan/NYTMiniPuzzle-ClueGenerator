@@ -110,7 +110,7 @@ class SlidePuzzleGUI extends JPanel {
 
                         date = f.puzzleDate;
                         f.writePuzzle(date);
-                        f.PrintPuzzle();
+                        //f.PrintPuzzle();
                         setDate(date);
                         SlidePuzzleGUI newGUI =  new SlidePuzzleGUI(date, true);
                         _puzzleGraphics = newGUI._puzzleGraphics;
